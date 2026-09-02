@@ -1,3 +1,4 @@
+import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import type { UiCopy, UiLocale } from "@/i18n/ui-copy";
 import { SEO_PAGES, SOURCE_REPOSITORY_URL, SUPPORT_EMAIL } from "@/lib/seo/site";
 import { LARGE_FILE_LANGUAGE_PATHS } from "@/lib/seo/site";
@@ -18,19 +19,19 @@ const LEGAL_LINK_LABELS: Record<
     heading: "Legal",
     privacy: "Privacy Policy",
     terms: "Terms of Use",
-    source: "Open-source code",
+    source: "Open source on GitHub",
   },
   es: {
     heading: "Legal",
     privacy: "Privacidad (en inglés)",
     terms: "Términos (en inglés)",
-    source: "Código abierto",
+    source: "Código abierto en GitHub",
   },
   ar: {
     heading: "معلومات قانونية",
     privacy: "الخصوصية (بالإنجليزية)",
     terms: "الشروط (بالإنجليزية)",
-    source: "الكود مفتوح المصدر",
+    source: "المصدر المفتوح على GitHub",
   },
 };
 
@@ -61,7 +62,10 @@ export function SiteFooter({ copy, locale }: SiteFooterProps) {
         <strong>{LEGAL_LINK_LABELS[locale].heading}</strong>
         <a href={SEO_PAGES.privacy.path}>{LEGAL_LINK_LABELS[locale].privacy}</a>
         <a href={SEO_PAGES.terms.path}>{LEGAL_LINK_LABELS[locale].terms}</a>
-        <a href={SOURCE_REPOSITORY_URL}>{LEGAL_LINK_LABELS[locale].source}</a>
+        <a className="footer-source-link" href={SOURCE_REPOSITORY_URL}>
+          <GithubLogoIcon aria-hidden="true" size={18} weight="fill" />
+          <span>{LEGAL_LINK_LABELS[locale].source}</span>
+        </a>
       </nav>
       <a className="footer-support" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
     </footer>

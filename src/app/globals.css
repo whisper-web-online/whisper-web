@@ -3560,6 +3560,18 @@ a {
   margin-left: 0;
 }
 
+.site-footer .footer-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.footer-source-link svg {
+  flex: 0 0 auto;
+}
+
 .footer-links strong {
   grid-column: 1 / -1;
   color: var(--text);

@@ -2,12 +2,27 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { UI_COPY } from "@/i18n/ui-copy";
 import { BLOG_POSTS, USE_CASE_PAGES } from "@/lib/seo/content-pages";
+import { SOURCE_REPOSITORY_URL } from "@/lib/seo/site";
 import { EditorialPage } from "./editorial-page";
 import { LandingSections } from "./landing-sections";
+import { SiteFooter } from "./site-footer";
 import { SpeechRecognitionGuide } from "./speech-recognition-guide";
 
 describe("GEO 内容语义", () => {
   afterEach(cleanup);
+
+  it("让三语页脚使用 GitHub 图标链接公开源码", () => {
+    for (const locale of ["en", "es", "ar"] as const) {
+      const { container, unmount } = render(<SiteFooter copy={UI_COPY[locale]} locale={locale} />);
+      const sourceLink = screen.getByRole("link", { name: /GitHub/ });
+
+      expect(sourceLink).toHaveAttribute("href", SOURCE_REPOSITORY_URL);
+      expect(sourceLink).toHaveClass("footer-source-link");
+      expect(container.querySelector(".footer-source-link svg[aria-hidden='true']"))
+        .toBeInTheDocument();
+      unmount();
+    }
+  });
 
   it("让三语首页使用自然问题、有序步骤和网络边界表", () => {
     for (const locale of ["en", "es", "ar"] as const) {
