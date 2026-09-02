@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const SITE_NAME = "Whisper Web";
 export const SITE_URL = "https://whisperwebfree.com";
 export const SUPPORT_EMAIL = "support@whisperwebfree.com";
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+export const GITHUB_ORGANIZATION_URL = "https://github.com/whisper-web-online";
+export const SOURCE_REPOSITORY_URL = `${GITHUB_ORGANIZATION_URL}/whisper-web`;
 
 export type SeoLocale = "en" | "es" | "ar";
 

@@ -1,5 +1,5 @@
 import type { UiCopy, UiLocale } from "@/i18n/ui-copy";
-import { SEO_PAGES, SUPPORT_EMAIL } from "@/lib/seo/site";
+import { SEO_PAGES, SOURCE_REPOSITORY_URL, SUPPORT_EMAIL } from "@/lib/seo/site";
 import { LARGE_FILE_LANGUAGE_PATHS } from "@/lib/seo/site";
 import { CONVERTER_PAGE_COPY } from "@/i18n/converter-page-copy";
 import { CONVERTER_PATHS } from "@/features/converter/routes";
@@ -10,10 +10,28 @@ interface SiteFooterProps {
   locale: UiLocale;
 }
 
-const LEGAL_LINK_LABELS: Record<UiLocale, { heading: string; privacy: string; terms: string }> = {
-  en: { heading: "Legal", privacy: "Privacy Policy", terms: "Terms of Use" },
-  es: { heading: "Legal", privacy: "Privacidad (en inglés)", terms: "Términos (en inglés)" },
-  ar: { heading: "معلومات قانونية", privacy: "الخصوصية (بالإنجليزية)", terms: "الشروط (بالإنجليزية)" },
+const LEGAL_LINK_LABELS: Record<
+  UiLocale,
+  { heading: string; privacy: string; terms: string; source: string }
+> = {
+  en: {
+    heading: "Legal",
+    privacy: "Privacy Policy",
+    terms: "Terms of Use",
+    source: "Open-source code",
+  },
+  es: {
+    heading: "Legal",
+    privacy: "Privacidad (en inglés)",
+    terms: "Términos (en inglés)",
+    source: "Código abierto",
+  },
+  ar: {
+    heading: "معلومات قانونية",
+    privacy: "الخصوصية (بالإنجليزية)",
+    terms: "الشروط (بالإنجليزية)",
+    source: "الكود مفتوح المصدر",
+  },
 };
 
 /**
@@ -43,6 +61,7 @@ export function SiteFooter({ copy, locale }: SiteFooterProps) {
         <strong>{LEGAL_LINK_LABELS[locale].heading}</strong>
         <a href={SEO_PAGES.privacy.path}>{LEGAL_LINK_LABELS[locale].privacy}</a>
         <a href={SEO_PAGES.terms.path}>{LEGAL_LINK_LABELS[locale].terms}</a>
+        <a href={SOURCE_REPOSITORY_URL}>{LEGAL_LINK_LABELS[locale].source}</a>
       </nav>
       <a className="footer-support" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
     </footer>

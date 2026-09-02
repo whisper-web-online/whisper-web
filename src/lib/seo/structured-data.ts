@@ -3,7 +3,23 @@ import type { LargeFileCopy } from "@/i18n/large-file-copy";
 import type { ConverterPageCopy } from "@/i18n/converter-page-copy";
 import type { EditorialPage } from "./content-pages";
 import type { SeoPageConfig } from "./site";
-import { absoluteUrl, SEO_PAGES, SITE_NAME, SITE_URL } from "./site";
+import {
+  absoluteUrl,
+  GITHUB_ORGANIZATION_URL,
+  ORGANIZATION_ID,
+  SEO_PAGES,
+  SITE_NAME,
+  SITE_URL,
+  SUPPORT_EMAIL,
+} from "./site";
+
+const ORGANIZATION_REFERENCE = { "@id": ORGANIZATION_ID };
+const ORGANIZATION_AUTHOR = {
+  "@type": "Organization",
+  "@id": ORGANIZATION_ID,
+  name: SITE_NAME,
+  url: SITE_URL,
+};
 
 /**
  * 将当前语言工具页的可见能力和 FAQ 组装为 WebApplication 结构化数据。
@@ -19,11 +35,22 @@ export function createToolPageJsonLd(locale: UiLocale, copy: UiCopy): Record<str
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        name: SITE_NAME,
+        url: SITE_URL,
+        email: SUPPORT_EMAIL,
+        description:
+          "Whisper Web develops privacy-first browser tools for local speech-to-text and media conversion.",
+        sameAs: [GITHUB_ORGANIZATION_URL],
+      },
+      {
         "@type": "WebSite",
         "@id": `${SITE_URL}/#website`,
         name: SITE_NAME,
         url: SITE_URL,
         inLanguage: ["en", "es", "ar"],
+        publisher: ORGANIZATION_REFERENCE,
       },
       {
         "@type": "WebApplication",
@@ -36,6 +63,7 @@ export function createToolPageJsonLd(locale: UiLocale, copy: UiCopy): Record<str
         browserRequirements: "JavaScript, WebAssembly, and browser audio decoding",
         inLanguage: locale,
         isAccessibleForFree: true,
+        publisher: ORGANIZATION_REFERENCE,
         offers: {
           "@type": "Offer",
           price: "0",
@@ -202,8 +230,8 @@ export function createSpeechRecognitionJsonLd(): Record<string, unknown> {
         inLanguage: "en",
         datePublished: page.datePublished,
         dateModified: page.lastModified,
-        author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-        publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+        author: ORGANIZATION_AUTHOR,
+        publisher: ORGANIZATION_REFERENCE,
         about: ["Speech recognition", "Whisper", "WebGPU", "WebAssembly"],
       },
       {
@@ -316,8 +344,8 @@ export function createEditorialPageJsonLd(page: EditorialPage): Record<string, u
         inLanguage: "en",
         datePublished: page.seo.datePublished,
         dateModified: page.seo.lastModified,
-        author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-        publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+        author: ORGANIZATION_AUTHOR,
+        publisher: ORGANIZATION_REFERENCE,
         about: page.seo.primaryKeyword,
       }
     : {

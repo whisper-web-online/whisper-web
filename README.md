@@ -4,6 +4,8 @@ Whisper Web 是一个在浏览器中本地运行 Whisper 的开源语音转文�
 
 官方网站：[whisperwebfree.com](https://whisperwebfree.com)
 
+维护组织：[Whisper Web on GitHub](https://github.com/whisper-web-online)
+
 ## 功能
 
 - 导入本地音频或视频、麦克风录音以及支持 CORS 的媒体直链

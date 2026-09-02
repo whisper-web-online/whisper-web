@@ -9,8 +9,11 @@ import {
   absoluteUrl,
   createPageMetadata,
   CONVERTER_LANGUAGE_ALTERNATES,
+  GITHUB_ORGANIZATION_URL,
   LARGE_FILE_LANGUAGE_ALTERNATES,
+  ORGANIZATION_ID,
   SEO_PAGES,
+  SOURCE_REPOSITORY_URL,
   TOOL_LANGUAGE_ALTERNATES,
 } from "./site";
 import {
@@ -163,6 +166,24 @@ describe("SEO 页面矩阵", () => {
 });
 
 describe("本地化 SEO 内容", () => {
+  it("用 GitHub Organization 主页建立唯一品牌实体关联", () => {
+    const data = createToolPageJsonLd("en", UI_COPY.en);
+    const graph = data["@graph"] as Array<Record<string, unknown>>;
+    const organization = graph.find((item) => item["@type"] === "Organization");
+    const website = graph.find((item) => item["@type"] === "WebSite");
+    const application = graph.find((item) => item["@type"] === "WebApplication");
+
+    expect(organization).toMatchObject({
+      "@id": ORGANIZATION_ID,
+      name: "Whisper Web",
+      url: "https://whisperwebfree.com",
+      sameAs: [GITHUB_ORGANIZATION_URL],
+    });
+    expect(organization?.sameAs).not.toContain(SOURCE_REPOSITORY_URL);
+    expect(website?.publisher).toEqual({ "@id": ORGANIZATION_ID });
+    expect(application?.publisher).toEqual({ "@id": ORGANIZATION_ID });
+  });
+
   it("为三种语言的工具页输出对应主关键词 H1 文案", () => {
     expect(UI_COPY.en.hero.title).toContain("Whisper Web");
     expect(UI_COPY.es.hero.title.toLowerCase()).toContain("transcribir audio a texto");

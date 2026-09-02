@@ -4,6 +4,14 @@
   "description": "在浏览器中本地运行 Whisper 的开源语音转文字工具。",
   "license": "MIT",
   "private": true,
+  "homepage": "https://whisperwebfree.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whisper-web-online/whisper-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whisper-web-online/whisper-web/issues"
+  },
   "engines": {
     "node": ">=22.0.0"
   },
