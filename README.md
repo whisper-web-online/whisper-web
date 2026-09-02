@@ -22,6 +22,7 @@ Maintained by: [Whisper Web on GitHub](https://github.com/whisper-web-online)
 - Local files, microphone recordings, transcripts, and converted MP3 files are not uploaded to a Whisper Web application server.
 - The browser still needs network access to download application assets, Whisper models, and MP3 encoding components.
 - When a direct media URL is used, the browser requests the file directly from the third-party media host.
+- The Product Hunt footer badge is loaded lazily from Product Hunt with a no-referrer policy; the request does not contain local media, filenames, transcripts, or converted MP3 files.
 - The open-source build includes no analytics project IDs. Analytics scripts are not loaded unless the corresponding environment variables are configured.
 - If a deployment enables Microsoft Clarity, the root document masks page content to prevent file names and transcript text from appearing in session recordings.
 

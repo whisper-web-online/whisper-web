@@ -2,7 +2,11 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { UI_COPY } from "@/i18n/ui-copy";
 import { BLOG_POSTS, USE_CASE_PAGES } from "@/lib/seo/content-pages";
-import { SOURCE_REPOSITORY_URL } from "@/lib/seo/site";
+import {
+  PRODUCT_HUNT_BADGE_URL,
+  PRODUCT_HUNT_PRODUCT_URL,
+  SOURCE_REPOSITORY_URL,
+} from "@/lib/seo/site";
 import { EditorialPage } from "./editorial-page";
 import { LandingSections } from "./landing-sections";
 import { SiteFooter } from "./site-footer";
@@ -11,15 +15,27 @@ import { SpeechRecognitionGuide } from "./speech-recognition-guide";
 describe("GEO 内容语义", () => {
   afterEach(cleanup);
 
-  it("让三语页脚使用 GitHub 图标链接公开源码", () => {
+  it("让三语页脚展示 GitHub 源码与 Product Hunt 可信度入口", () => {
     for (const locale of ["en", "es", "ar"] as const) {
       const { container, unmount } = render(<SiteFooter copy={UI_COPY[locale]} locale={locale} />);
       const sourceLink = screen.getByRole("link", { name: /GitHub/ });
+      const productHuntLink = screen.getByRole("link", { name: /Product Hunt/ });
+      const productHuntBadge = within(productHuntLink).getByRole("img", { name: /Private speech-to-text/ });
 
       expect(sourceLink).toHaveAttribute("href", SOURCE_REPOSITORY_URL);
       expect(sourceLink).toHaveClass("footer-source-link");
       expect(container.querySelector(".footer-source-link svg[aria-hidden='true']"))
         .toBeInTheDocument();
+      expect(container.querySelector(".footer-navigation-groups")).toBeInTheDocument();
+      expect(container.querySelector(".footer-trust-block")).toBeInTheDocument();
+      expect(productHuntLink).toHaveAttribute("href", PRODUCT_HUNT_PRODUCT_URL);
+      expect(productHuntLink).toHaveAttribute("target", "_blank");
+      expect(productHuntLink).toHaveAttribute("rel", "noopener noreferrer");
+      expect(productHuntBadge).toHaveAttribute("src", PRODUCT_HUNT_BADGE_URL);
+      expect(productHuntBadge).toHaveAttribute("width", "250");
+      expect(productHuntBadge).toHaveAttribute("height", "54");
+      expect(productHuntBadge).toHaveAttribute("loading", "lazy");
+      expect(productHuntBadge).toHaveAttribute("referrerpolicy", "no-referrer");
       unmount();
     }
   });

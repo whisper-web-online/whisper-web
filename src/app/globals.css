@@ -3533,27 +3533,29 @@ a {
 
 .site-footer.has-links {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) repeat(3, auto);
+  grid-template-columns: minmax(210px, 0.75fr) minmax(0, 1.6fr) auto;
   min-height: 180px;
   padding-top: 34px;
   padding-bottom: 34px;
-  gap: 50px;
+  gap: clamp(28px, 4vw, 64px);
 }
 
 .footer-brand-block,
 .footer-links {
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 10px;
 }
 
-.footer-links {
-  grid-template-columns: repeat(3, auto);
-  column-gap: 24px;
+.footer-navigation-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  align-items: start;
+  gap: 28px;
 }
 
-.footer-legal-links {
-  grid-template-columns: repeat(2, auto);
+.footer-links {
+  grid-template-columns: 1fr;
 }
 
 .site-footer .footer-links a {
@@ -3573,14 +3575,34 @@ a {
 }
 
 .footer-links strong {
-  grid-column: 1 / -1;
   color: var(--text);
   font-size: 12px;
 }
 
+.footer-trust-block {
+  display: grid;
+  align-content: start;
+  justify-items: end;
+  gap: 14px;
+}
+
+.site-footer .product-hunt-badge {
+  display: block;
+  width: 250px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  line-height: 0;
+}
+
+.product-hunt-badge img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .site-footer .footer-support {
   margin-left: 0;
-  align-self: center;
 }
 
 .site-footer .brand {
@@ -3667,11 +3689,14 @@ a {
   }
 
   .site-footer.has-links {
-    grid-template-columns: 1fr repeat(2, auto);
+    grid-template-columns: minmax(200px, 0.7fr) minmax(0, 1.3fr);
   }
 
-  .footer-support {
+  .footer-trust-block {
     grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .legal-layout {
@@ -4119,13 +4144,25 @@ a {
     gap: 10px;
   }
 
-  .footer-links strong {
+  .footer-navigation-groups {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .footer-trust-block {
     grid-column: auto;
+    display: grid;
+    justify-items: start;
+    gap: 14px;
   }
 
   .site-footer a {
     width: 100%;
     margin-left: 0;
+  }
+
+  .site-footer .product-hunt-badge {
+    width: min(250px, 100%);
   }
 
   .legal-hero {

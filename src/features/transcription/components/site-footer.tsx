@@ -1,6 +1,12 @@
 import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import type { UiCopy, UiLocale } from "@/i18n/ui-copy";
-import { SEO_PAGES, SOURCE_REPOSITORY_URL, SUPPORT_EMAIL } from "@/lib/seo/site";
+import {
+  PRODUCT_HUNT_BADGE_URL,
+  PRODUCT_HUNT_PRODUCT_URL,
+  SEO_PAGES,
+  SOURCE_REPOSITORY_URL,
+  SUPPORT_EMAIL,
+} from "@/lib/seo/site";
 import { LARGE_FILE_LANGUAGE_PATHS } from "@/lib/seo/site";
 import { CONVERTER_PAGE_COPY } from "@/i18n/converter-page-copy";
 import { CONVERTER_PATHS } from "@/features/converter/routes";
@@ -45,29 +51,50 @@ export function SiteFooter({ copy, locale }: SiteFooterProps) {
         <Brand />
         <span>{copy.footer}</span>
       </div>
-      {copy.footerLinks && locale === "en" ? (
-        <nav className="footer-links" aria-label="Footer navigation">
-          <strong>{copy.footerLinks.heading}</strong>
-          <a href={SEO_PAGES.useCases.path}>{copy.footerLinks.useCases}</a>
-          <a href={SEO_PAGES.blog.path}>{copy.footerLinks.blog}</a>
-          <a href={SEO_PAGES.speechRecognition.path}>{copy.footerLinks.guide}</a>
+      <div className="footer-navigation-groups">
+        {copy.footerLinks && locale === "en" ? (
+          <nav className="footer-links" aria-label="Footer navigation">
+            <strong>{copy.footerLinks.heading}</strong>
+            <a href={SEO_PAGES.useCases.path}>{copy.footerLinks.useCases}</a>
+            <a href={SEO_PAGES.blog.path}>{copy.footerLinks.blog}</a>
+            <a href={SEO_PAGES.speechRecognition.path}>{copy.footerLinks.guide}</a>
+          </nav>
+        ) : null}
+        <nav className="footer-links footer-tool-links" aria-label={CONVERTER_PAGE_COPY[locale].toolsMenu.label}>
+          <strong>{CONVERTER_PAGE_COPY[locale].nav.tools}</strong>
+          <a href={CONVERTER_PATHS[locale]}>{CONVERTER_PAGE_COPY[locale].toolsMenu.converter}</a>
+          <a href={LARGE_FILE_LANGUAGE_PATHS[locale]}>{CONVERTER_PAGE_COPY[locale].toolsMenu.largeFile}</a>
         </nav>
-      ) : null}
-      <nav className="footer-links footer-tool-links" aria-label={CONVERTER_PAGE_COPY[locale].toolsMenu.label}>
-        <strong>{CONVERTER_PAGE_COPY[locale].nav.tools}</strong>
-        <a href={CONVERTER_PATHS[locale]}>{CONVERTER_PAGE_COPY[locale].toolsMenu.converter}</a>
-        <a href={LARGE_FILE_LANGUAGE_PATHS[locale]}>{CONVERTER_PAGE_COPY[locale].toolsMenu.largeFile}</a>
-      </nav>
-      <nav className="footer-links footer-legal-links" aria-label={LEGAL_LINK_LABELS[locale].heading}>
-        <strong>{LEGAL_LINK_LABELS[locale].heading}</strong>
-        <a href={SEO_PAGES.privacy.path}>{LEGAL_LINK_LABELS[locale].privacy}</a>
-        <a href={SEO_PAGES.terms.path}>{LEGAL_LINK_LABELS[locale].terms}</a>
-        <a className="footer-source-link" href={SOURCE_REPOSITORY_URL}>
-          <GithubLogoIcon aria-hidden="true" size={18} weight="fill" />
-          <span>{LEGAL_LINK_LABELS[locale].source}</span>
+        <nav className="footer-links footer-legal-links" aria-label={LEGAL_LINK_LABELS[locale].heading}>
+          <strong>{LEGAL_LINK_LABELS[locale].heading}</strong>
+          <a href={SEO_PAGES.privacy.path}>{LEGAL_LINK_LABELS[locale].privacy}</a>
+          <a href={SEO_PAGES.terms.path}>{LEGAL_LINK_LABELS[locale].terms}</a>
+          <a className="footer-source-link" href={SOURCE_REPOSITORY_URL}>
+            <GithubLogoIcon aria-hidden="true" size={18} weight="fill" />
+            <span>{LEGAL_LINK_LABELS[locale].source}</span>
+          </a>
+        </nav>
+      </div>
+      <div className="footer-trust-block">
+        <a
+          className="product-hunt-badge"
+          href={PRODUCT_HUNT_PRODUCT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- Product Hunt 官方徽章由远程接口动态生成 */}
+          <img
+            alt="Whisper Web - Private speech-to-text that runs in your browser | Product Hunt"
+            width={250}
+            height={54}
+            src={PRODUCT_HUNT_BADGE_URL}
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
+          />
         </a>
-      </nav>
-      <a className="footer-support" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+        <a className="footer-support" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+      </div>
     </footer>
   );
 }

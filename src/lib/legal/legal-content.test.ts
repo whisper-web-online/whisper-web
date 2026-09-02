@@ -7,10 +7,12 @@ describe("法律文档合同", () => {
     for (const document of [PRIVACY_POLICY, TERMS_OF_USE]) {
       const ids = document.sections.map((section) => section.id);
 
-      expect(document.effectiveDate).toBe("September 1, 2026");
       expect(new Set(ids).size).toBe(ids.length);
       expect(document.sections.length).toBeGreaterThanOrEqual(10);
     }
+
+    expect(PRIVACY_POLICY.effectiveDate).toBe("September 2, 2026");
+    expect(TERMS_OF_USE.effectiveDate).toBe("September 1, 2026");
   });
 
   it("在隐私政策中披露本地存储、网络边界和联系渠道", () => {
@@ -19,6 +21,8 @@ describe("法律文档合同", () => {
     expect(text).toContain("IndexedDB");
     expect(text).toContain("Hugging Face");
     expect(text).toContain("Direct media URLs");
+    expect(text).toContain("Product Hunt badge");
+    expect(text).toContain("no-referrer");
     expect(text).toContain("does not include advertising");
     expect(text).toContain("Google Analytics 4");
     expect(text).toContain("Plausible");

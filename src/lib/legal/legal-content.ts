@@ -20,7 +20,7 @@ export const PRIVACY_POLICY: LegalDocument = {
   title: "Privacy Policy",
   summary:
     "Whisper Web is designed so that selected media, microphone recordings, transcripts and converted MP3 files can be processed on your device. This policy explains that local boundary, the network requests the service still needs and the limited information that may reach us or other providers.",
-  effectiveDate: "September 1, 2026",
+  effectiveDate: "September 2, 2026",
   sections: [
     {
       id: "scope",
@@ -55,6 +55,7 @@ export const PRIVACY_POLICY: LegalDocument = {
         "Website delivery: hosting and network providers process requests needed to deliver the application, protect it from abuse and maintain availability. They may retain limited security or access logs under their own operational schedules.",
         "Model downloads: the first use of a model, and later cache refreshes, request model files from Hugging Face. Hugging Face receives the request directly from your browser and handles it under its own privacy policy.",
         "Direct media URLs: if you paste a media URL, your browser requests that URL from its host. That host can receive ordinary request data and will apply its own terms and privacy practices. The fetched media is then processed locally by Whisper Web.",
+        "Product Hunt badge: when the footer badge comes into view, your browser may request the badge image from Product Hunt. Product Hunt receives ordinary request data such as your IP address and browser information. The request uses a no-referrer policy and does not include local media, filenames, transcripts or converted MP3 files.",
         "Analytics: Google Analytics 4, Plausible and Microsoft Clarity may receive page URLs, referrers, approximate location derived from IP address, device and browser information, interaction events and similar usage data. Clarity may create masked session replays and heatmaps. These services do not receive the local media, microphone recordings, transcript content, filenames, decoded audio or converted MP3 files processed by Whisper Web.",
         `Support: if you email ${SUPPORT_EMAIL}, we receive your email address, message and any information you choose to include so that we can respond, handle a request or investigate a problem. Do not attach confidential recordings or transcripts unless necessary.`,
       ],

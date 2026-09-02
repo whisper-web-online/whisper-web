@@ -6,6 +6,10 @@ export const SUPPORT_EMAIL = "support@whisperwebfree.com";
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const GITHUB_ORGANIZATION_URL = "https://github.com/whisper-web-online";
 export const SOURCE_REPOSITORY_URL = `${GITHUB_ORGANIZATION_URL}/whisper-web`;
+export const PRODUCT_HUNT_PRODUCT_URL =
+  "https://www.producthunt.com/products/whisper-web-4?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-whisper-web-3";
+export const PRODUCT_HUNT_BADGE_URL =
+  "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1238964&theme=light&t=1788320994581";
 
 export type SeoLocale = "en" | "es" | "ar";
 
