@@ -1,0 +1,45 @@
+# 操作系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 本地代理与工具状态
+.agents/
+.codex/
+
+# 依赖与构建产物
+node_modules/
+.next/
+out/
+dist/
+.open-next/
+.vercel/
+.wrangler/
+.turbo/
+*.tsbuildinfo
+
+# 测试、日志与本地输出
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright-cli/
+output/
+*.log
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 本地环境变量；保留公开示例
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.dev.vars.example
+.dev.vars
+
+# 本地测试媒体
+/test.mp4

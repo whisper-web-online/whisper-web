@@ -1,0 +1,42 @@
+# Whisper Web
+
+> Free browser-based speech-to-text and local MP4-to-MP3 conversion. Selected media is processed on the user's device rather than uploaded to Whisper Web.
+
+## Core public pages
+
+- [Whisper Web tool](https://whisperwebfree.com/): English local transcription tool for audio, video, direct media URLs, and microphone recordings.
+- [Transcribir audio a texto](https://whisperwebfree.com/es/transcribir-audio-a-texto): Spanish local transcription tool.
+- [تحويل الصوت إلى نص](https://whisperwebfree.com/ar): Arabic RTL local transcription tool for audio, video, direct media URLs, and microphone recordings.
+- [Speech recognition guide](https://whisperwebfree.com/speech-recognition): Explanation of browser speech recognition, local processing, WebAssembly, WebGPU, privacy, and compatibility limits.
+- [Transcription use cases](https://whisperwebfree.com/use-cases): Local workflows for saved meetings, voice memos, recorded interviews, and short podcast recordings.
+- [Speech-to-text guides](https://whisperwebfree.com/blog): Comparisons and practical guides about local media processing, transcription, MP4 to MP3 conversion, browser compute, and subtitle exports.
+- [Transcribe audio without uploading](https://whisperwebfree.com/blog/transcribe-audio-without-uploading): Exact network, storage, and media-processing boundaries for local mode.
+- [How to transcribe large audio files](https://whisperwebfree.com/blog/how-to-transcribe-large-audio-files): Decision guide for choosing the standard or large-file workflow, preparing the device, handling interruptions, and reviewing the result.
+- [How to convert MP4 to MP3](https://whisperwebfree.com/blog/how-to-convert-mp4-to-mp3): Detailed local workflow covering video and codec compatibility, 128/192/320 kbps choices, privacy, browser storage, interruptions, troubleshooting, and result checks.
+- [Large file transcription](https://whisperwebfree.com/large-file-transcription): English local tool for audio or video files up to 1 GB and 1 hour, processed in browser-sized sections.
+- [Transcribir audios largos](https://whisperwebfree.com/es/transcribir-audios-largos): Spanish large-file transcription tool with the same local limits and segmented workflow.
+- [تحويل ملف صوتي طويل إلى نص](https://whisperwebfree.com/ar/large-file-transcription): Arabic RTL large-file transcription tool for local audio or video files up to 1 GB and 1 hour.
+- [MP4 to MP3 converter](https://whisperwebfree.com/mp4-to-mp3): English local converter for one MP4, MOV, or WebM video up to 300 MiB and 20 minutes, with 128, 192, or 320 kbps MP3 output.
+- [Convertir MP4 a MP3](https://whisperwebfree.com/es/convertir-mp4-a-mp3): Spanish local MP4 to MP3 converter.
+- [تحويل MP4 إلى MP3](https://whisperwebfree.com/ar/mp4-to-mp3): Arabic RTL MP4 to MP3 converter.
+
+## Product scope and limits
+
+- Media is processed locally in the browser; application files, Whisper models, and the MP3 encoder still require network downloads.
+- The free local workflow accepts supported media up to 300 MB and 20 minutes.
+- The separate large-file workflow accepts a local file up to 1 GB and 1 hour. Partial progress remains only in the current tab; completed transcripts are saved to IndexedDB.
+- Long local jobs can increase power use, fan noise and device temperature. The large-file page estimates remaining time from measured processing speed and labels the result as a reference.
+- The current product does not identify speakers, summarize conversations, capture system audio from a live meeting tab, or join meetings as a bot.
+- Transcripts are stored in the current browser with IndexedDB until exported or deleted.
+- The MP4 to MP3 converter uses the main audio track only. Source video and decoded PCM are not stored; a saved MP3 remains in the current browser for 30 days and may be cleared earlier by the browser.
+- Conversion history supports local playback, filename search, repeat download, and single-record deletion. A storage failure does not prevent downloading the current completed MP3.
+- Direct media URLs must be public and allow browser access through CORS.
+- Google Analytics 4, Plausible, and Microsoft Clarity may receive page and interaction data, but not selected media, microphone recordings, filenames, decoded audio, transcript content, or converted MP3 files processed by Whisper Web.
+- Whisper Web is an independent browser tool and is not an official OpenAI service.
+
+## Contact
+
+- Email: support@whisperwebfree.com
+- [Privacy Policy](https://whisperwebfree.com/privacy): Details about local processing, network requests, analytics providers, browser storage, and user choices.
+- Languages: English, Spanish, and Arabic interface support.
+- Updated: 2026-09-02
