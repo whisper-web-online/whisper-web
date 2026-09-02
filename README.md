@@ -1,42 +1,42 @@
 # Whisper Web
 
-Whisper Web 是一个在浏览器中本地运行 Whisper 的开源语音转文字工具。媒体解码、模型推理、结果编辑、转录历史和 MP3 转换均在用户设备中完成。
+Whisper Web is an open-source speech-to-text application that runs Whisper locally in the browser. Media decoding, model inference, transcript editing, transcription history, and MP3 conversion all happen on the user's device.
 
-官方网站：[whisperwebfree.com](https://whisperwebfree.com)
+Website: [whisperwebfree.com](https://whisperwebfree.com)
 
-维护组织：[Whisper Web on GitHub](https://github.com/whisper-web-online)
+Maintained by: [Whisper Web on GitHub](https://github.com/whisper-web-online)
 
-## 功能
+## Features
 
-- 导入本地音频或视频、麦克风录音以及支持 CORS 的媒体直链
-- 使用 Whisper Tiny、Base 或 Small 模型进行本地转录
-- 支持 WebAssembly 与 WebGPU 推理
-- 支持英语、西班牙语和阿拉伯语界面
-- 在浏览器 IndexedDB 中保存、搜索和编辑本地历史
-- 导出 TXT、JSON、SRT 和 VTT
-- 在浏览器中把 MP4、MOV 或 WebM 的主音轨转换为 MP3
-- 提供独立的大文件分段转录流程
+- Import local audio or video files, microphone recordings, or CORS-enabled direct media URLs
+- Transcribe locally with Whisper Tiny, Base, or Small models
+- Run inference with WebAssembly or WebGPU
+- Use the interface in English, Spanish, or Arabic
+- Save, search, and edit local history in browser IndexedDB
+- Export transcripts as TXT, JSON, SRT, or VTT
+- Convert the primary audio track of a local MP4, MOV, or WebM file to MP3 in the browser
+- Process large local files through a dedicated segmented transcription workflow
 
-## 隐私边界
+## Privacy boundaries
 
-- 本地文件、麦克风录音、转录文本和转换后的 MP3 不会上传到 Whisper Web 应用服务器。
-- 浏览器仍需联网下载站点资源、Whisper 模型和 MP3 编码组件。
-- 使用媒体直链时，浏览器会直接请求第三方媒体主机。
-- 开源版本不内置任何统计平台 ID；未配置环境变量时不会加载统计脚本。
-- 如果部署者启用 Microsoft Clarity，根文档会显式屏蔽页面内容，避免文件名和转录文本进入会话回放。
+- Local files, microphone recordings, transcripts, and converted MP3 files are not uploaded to a Whisper Web application server.
+- The browser still needs network access to download application assets, Whisper models, and MP3 encoding components.
+- When a direct media URL is used, the browser requests the file directly from the third-party media host.
+- The open-source build includes no analytics project IDs. Analytics scripts are not loaded unless the corresponding environment variables are configured.
+- If a deployment enables Microsoft Clarity, the root document masks page content to prevent file names and transcript text from appearing in session recordings.
 
-## 本地运行
+## Run locally
 
-需要 Node.js 22+ 和 pnpm 10。
+Requirements: Node.js 22+ and pnpm 10.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-访问 `http://localhost:3000`。
+Open `http://localhost:3000`.
 
-## 验证与构建
+## Verify and build
 
 ```bash
 pnpm typecheck
@@ -45,23 +45,23 @@ pnpm test
 pnpm build
 ```
 
-也可以一次运行完整验证：
+Run all checks with one command:
 
 ```bash
 pnpm verify
 ```
 
-项目使用 Next.js 静态导出，构建结果位于 `out/`。构建固定使用 Webpack，因为当前 Transformers.js Worker 的动态加载路径与默认 Turbopack 不兼容。
+The project uses Next.js static export and writes the production output to `out/`. Production builds use Webpack because the current Transformers.js Worker loading path is not compatible with the default Turbopack build.
 
-## 可选统计配置
+## Optional analytics
 
-所有统计服务默认关闭。复制示例配置后，只填写你自己拥有的项目标识：
+All analytics services are disabled by default. Copy the example configuration and add only project identifiers that you control:
 
 ```bash
 cp .env.example .env.local
 ```
 
-支持的变量：
+Supported variables:
 
 ```dotenv
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
@@ -70,16 +70,16 @@ NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL=
 NEXT_PUBLIC_CLARITY_PROJECT_ID=
 ```
 
-这些变量会进入浏览器构建，因此只能存放公开项目标识，不能存放 API Token、密码或私钥。
+These values are included in the browser build. Use them only for public project identifiers, never for API tokens, passwords, or private keys.
 
-## 模型与第三方软件
+## Models and third-party software
 
-仓库不包含 Whisper 模型权重。浏览器会在用户选择模型后从 Hugging Face 下载对应的 ONNX 文件。完整依赖许可与来源见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+This repository does not include Whisper model weights. After a user selects a model, the browser downloads the corresponding ONNX files from Hugging Face. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for dependency licenses and sources.
 
-## 安全问题
+## Security
 
-请不要在公开 Issue 中提交密钥、私人录音或转录内容。安全问题请按照 [SECURITY.md](./SECURITY.md) 私下报告。
+Do not post secrets, private recordings, or transcript content in public issues. Follow [SECURITY.md](./SECURITY.md) to report security issues privately.
 
-## 许可证
+## License
 
-Whisper Web 自有源码采用 [MIT License](./LICENSE)。第三方组件和模型继续适用各自的许可证。
+Original Whisper Web source code is available under the [MIT License](./LICENSE). Third-party components and models remain subject to their respective licenses.
